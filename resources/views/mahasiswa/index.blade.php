@@ -1,4 +1,3 @@
-<!-- resources/views/items/index.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +8,7 @@
 </head>
 
 <body>
-    <h1>Perpustakaan</h1>
+    <h1>Mahasiswa</h1>
 
     @if(session('success'))
         <p>{{ session('success') }}</p>
@@ -18,21 +17,23 @@
     <table border="1">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Description</th> <!-- Menambahkan kolom Deskripsi -->
-                <th>Actions</th>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>Jurusan</th>
+                <th>No Telepon</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach($items as $item)
+
+        <body>
+            @foreach($rows as $row)
                 <tr>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->price }}</td>
-                    <td>{{ $item->description }}</td> 
+                    <td>{{ $row->nim }}</td>
+                    <td>{{ $row->nama }}</td>
+                    <td>{{ $row->jurusan }}</td>
+                    <td>{{ $row->notelp }}</td>
                     <td>
-                        <a href="{{ route('items.edit', ['item' => $item->id]) }}">Edit</a>
-                        <form action="{{ route('items.destroy', $item->id) }}" method="POST" style="display:inline;">
+                        <a href="{{ route('mahasiswa.edit', ['mahasiswa' => $row->id]) }}">Edit</a>
+                        <form action="{{ route('mahasiswa.destroy', $row->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Delete</button>
@@ -40,10 +41,10 @@
                     </td>
                 </tr>
             @endforeach
-        </tbody>
+        </body>
     </table>
 
-    <a href="{{ route('items.create') }}">Create New Item</a>
+    <a href="{{ route('mahasiswa.add') }}">Create New Item</a>
 </body>
 
 </html>

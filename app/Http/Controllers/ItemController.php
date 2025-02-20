@@ -7,26 +7,18 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $items = Item::all();
         return view('items.index', compact('items'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('items.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         // Validasi input, menambahkan deskripsi
@@ -47,17 +39,10 @@ class ItemController extends Controller
         return redirect()->route('items.index')->with('success', 'Item created successfully.');
     }
 
-    /**
-     * Show the specified resource.
-     */
     public function show(Item $item)
     {
-        return view('items.show', compact('item'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Item $item)
     {
         return view('items.edit', compact('item'));
